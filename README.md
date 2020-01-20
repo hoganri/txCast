@@ -9,6 +9,10 @@ Performed initial tests using testnet and appears to perform as intended. Furthe
 I don't know how much the Blockstream API is currently used to push transactions. For this reason I recommend waiting until after the 01 March 2020 before using this on mainnet to ensure that a few people are using it, thus it is plausible that transactions sent to the blockstream node in this manner can't be linked.
 
 # Setup:
+You need the following python packages:
+- [requests](https://2.python-requests.org/en/master/) to use the blockstream API to push transactions
+- [Stem](https://stem.torproject.org/) to use tor
+
 You have to install tor. These are the instructions for linux:
 1: sudo apt install tor
 2: sudo service tor start
@@ -27,6 +31,8 @@ You have to install tor. These are the instructions for linux:
 - Not sure how long tor takes to renew IP, probably need a delay somewhere
 
 # Future Work:
-- Have this functionality added directly into wallets
+- Have this work with your own node if this is deemed advantageous (I expect that it is not given the use of tor here).
+- Have options for broadcasting when fees drop below some user set threshold / not broadcasting when fees go too high.
+- Have some check that transaction is confirmed, or at least seen by another node on the network (Use a second API).
 - Have options for running this with a GUI
-- Have options for broadcasting when fees are low
+- Have this functionality added directly into wallets
