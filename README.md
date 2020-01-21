@@ -32,7 +32,7 @@ You have to install tor. These are the instructions for linux:
 # Issues:
 - tor integration may not be robust. Should connection be refreshed in a different way? (Used [this](https://techmonger.github.io/68/tor-new-ip-python/))
 - Not sure how well this deals with daylight saving time clock changes (time will jump) or how to best deal with this?
-- Configured for testnet (Must remove /testnet from blockstream url for mainnet)
+- Configured for testnet (Must remove /testnet from blockstream url for mainnet, I recommend waiting till 01 March 2020 as explained above)
 - Not sure how long tor takes to renew IP, probably need a delay somewhere
 - Is randomint random enough?
 
