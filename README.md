@@ -1,5 +1,5 @@
 # txCast
-Schedule randomised Bitcoin transaction broadcasting to break timing analysis
+Randomised Bitcoin transaction broadcasting to break timing analysis
 
 # Overview
 Signed transactions are broadcast using the blockstream.info API over tor with IP addresses changing between each broadcast.
