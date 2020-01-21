@@ -1,12 +1,17 @@
 # txCast
 Schedule randomised Bitcoin transaction broadcasting to break timing analysis
 
-# Info
-Broadcasts are made using the blockstream.info API over tor with IP address changed between each broadcast.
+# Overview
+Signed transactions are broadcast using the blockstream.info API over tor with IP addresses changing between each broadcast.
 
-Performed initial tests using testnet and appears to perform as intended. Further testing needed.
+I have performed initial tests using testnet and appears to perform as intended. **Further testing needed.**
 
-I don't know how much the Blockstream API is currently used to push transactions. For this reason I recommend waiting until after the 01 March 2020 before using this on mainnet to ensure that a few people are using it, thus it is plausible that transactions sent to the blockstream node in this manner can't be linked.
+*Note: I don't know how much the Blockstream API is currently used to push transactions. For this reason I recommend waiting until after the 01 March 2020 before using this on mainnet to ensure that a few people are using it, thus it is plausible that transactions sent to the blockstream node in this manner can't be linked.*
+
+# Use:
+User simply enters each signed transaction one by one, then enters the time delay they are willing to wait until all transactions have been broadcast (in minutes, hours and then days). 
+
+![](/txCast.png)
 
 # Setup:
 You need the following python packages:
