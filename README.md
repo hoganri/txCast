@@ -34,6 +34,7 @@ You have to install tor. These are the instructions for linux:
 - Not sure how well this deals with daylight saving time clock changes (time will jump) or how to best deal with this?
 - Configured for testnet (Must remove /testnet from blockstream url for mainnet)
 - Not sure how long tor takes to renew IP, probably need a delay somewhere
+- Is randomint random enough?
 
 # Future Work:
 - Have this work with your own node if this is deemed advantageous (I expect that it is not given the use of tor here).
