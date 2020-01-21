@@ -105,8 +105,10 @@ def process_tx(i):
 
     renew_tor_ip()  # Renew tor IP address
     push_tx(next_broadcast_tx)
+    
+    push_time = datetime.now()
 
-    return current_time
+    return push_time
 
 
 def process_all():
