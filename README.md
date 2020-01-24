@@ -15,11 +15,8 @@ Users copy signed transactions from their wallet of choice and paste them into t
 Signed transactions are broadcast using the blockstream.info API over tor with IP addresses changing between each broadcast.
 
 # Setup:
-You need the following python packages:
-- [requests](https://2.python-requests.org/en/master/) to use the blockstream API to push transactions
-- [Stem](https://stem.torproject.org/) to use tor
 
-You have to install tor. These are the instructions for linux:
+Install tor. These are the instructions for linux:
 1. `sudo apt install tor`
 2. `sudo service tor start`
 3. `tor --hash-password test` <- Don't use test for mainnet
@@ -29,6 +26,14 @@ You have to install tor. These are the instructions for linux:
 5. `sudo service tor stop`
 6. `sudo service tor start`
 7. Set password to the password you entered in Step 3 on line 12 of the code (`password = "test"`)
+
+[Download](https://github.com/6102bitcoin/txCast/blob/master/txCast.py) the python script
+
+Install following python packages:
+- [requests](https://2.python-requests.org/en/master/) to use the blockstream API to push transactions
+- [Stem](https://stem.torproject.org/) to use tor
+
+Run the script with `python3 txCast.py`
 
 Note: The Blockstream API may be infrequently used push transactions. I recommend waiting until after the 01 March 2020 before using this on mainnet to ensure multiple people are using it, thus transactions sent to the blockstream node using txCast are not likely the same user.
 
