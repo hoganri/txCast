@@ -35,7 +35,7 @@ Install following python packages:
 
 Run the script with `python3 txCast.py`
 
-Note: The Blockstream API may be infrequently used push transactions. I recommend waiting until after the 01 March 2020 before using this on mainnet to ensure multiple people are using it, thus transactions sent to the blockstream node using txCast are not likely the same user.
+**Important Note:** The Blockstream API may be infrequently used push transactions. I recommend waiting until after the 01 March 2020 before using this on mainnet to ensure multiple people are using it, thus transactions sent to the blockstream node using txCast are not likely the same user.
 
 # Screenshot
 ![](/txCast.png)
