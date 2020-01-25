@@ -5,11 +5,11 @@ import requests
 import time
 from datetime import datetime
 from datetime import timedelta
-from random import randint, shuffle
 from stem import Signal
 from stem.control import Controller
+import secrets
 
-password = "test"
+password = "test" # Change this to your tor password
 
 tx_list = []
 time_list = []
@@ -25,23 +25,26 @@ def get_current_ip():
     session.proxies['https']='socks5h://localhost:9050'
 
     try:
-        r = session.get('http://httpbin.org/ip')
+        ip = session.get('http://httpbin.org/ip').text
+        ip = ip.partition('\"origin\": \"')[2]
+        ip = ip.rpartition('\"')[0] # Get only IP
     except Exception as e:
         print(str(e))
     else:
-        return r.text
+        return ip
 
 
 def renew_tor_ip():
-    with Controller.from_port(port = 9051) as controller:
+    with Controller.from_port(port=9051) as controller:
         controller.authenticate(password=password)
         controller.signal(Signal.NEWNYM)
+    time.sleep(secrets.SystemRandom().randint(15, 30)) # Ensure new IP used
 
 
 def fuzz(exact_value, lower_limit_fraction, upper_limit_fraction):
     lower_limit = int(exact_value * lower_limit_fraction)
     upper_limit = int(exact_value * upper_limit_fraction)
-    fuzzed_value = exact_value + randint(lower_limit, upper_limit)
+    fuzzed_value = exact_value + secrets.SystemRandom().randint(lower_limit, upper_limit)
     return fuzzed_value
 
 
@@ -55,7 +58,7 @@ def build_lists():
             print("Number of Signed Transactions Entered: " + str(len(tx_list)))
         else:
             tx_list.append(tx_next)
-    shuffle(tx_list)
+    secrets.SystemRandom().shuffle(tx_list)
 
     # Create ordered random times at which to broadcast:
     start = datetime.now()
@@ -73,7 +76,7 @@ def build_lists():
     max_duration = max_time - min_time
 
     for i in range(0, number_of_times):
-        random_time = 0.01 * randint(1, 100) * max_duration
+        random_time = secrets.SystemRandom().uniform(0, 1) * max_duration
         time_list.append(min_time + random_time)
 
     time_list.sort()
@@ -87,25 +90,29 @@ def build_lists():
 
 def push_tx(payload):
     requests.post('https://blockstream.info/testnet/api/tx', data=payload)
-    print("############################# SENDING TRANSACTION #############################" + str(payload))
+    print("############################# SENDING TRANSACTION #############################")
+    print("Data Sent: " + str(payload))
     print("IP Address Used: " + str(get_current_ip()))
 
 
 def process_tx(i):
     global next_broadcast_time
 
+    renew_tor_ip()  # Renew tor IP address
+
     # Set broadcast values
     next_broadcast_tx = tx_list[i]
     next_broadcast_time = time_list[i]
 
     current_time = datetime.now()
-    time_remaining = next_broadcast_time - current_time
+
+    if current_time > next_broadcast_time:
+        time_remaining = next_broadcast_time - next_broadcast_time
+    else:
+        time_remaining = next_broadcast_time - current_time
 
     time.sleep(time_remaining.total_seconds())
-
-    renew_tor_ip()  # Renew tor IP address
     push_tx(next_broadcast_tx)
-    
     push_time = datetime.now()
 
     return push_time
@@ -113,13 +120,15 @@ def process_tx(i):
 
 def process_all():
     for i in range(0, len(tx_list)):
-        print("---")
-        print("Transaction " + str(i+1) + " broadcast on " + str(process_tx(i)))
+        print("")
+        print("Transaction " + str(i+1) + " broadcast at " + str(process_tx(i)))
         print(str(len(tx_list)-i-1) + " Transactions Remaining")
 
 
 def main():
     build_lists()
     process_all()
+    print("")
+    print("############################# TXCAST COMPLETE #############################")
 
 main()
