@@ -1,16 +1,16 @@
 # txCast
-Randomised Bitcoin transaction broadcasting to break timing analysis (configured for testnet, further testing needed). 
+Randomised Bitcoin transaction broadcasting to break timing analysis (configured for testnet, further testing needed).
 
 # Motivation
 
-CoinJoin tools enable Bitcoin users to disassociate the past & future history of their bitcoin UTXOs (through a process called mixing). Users move their mixed coins to a secondary wallet for more secure storage (e.g. a Cold Wallet / Hardware wallet) and are potentially vulnerable to a timing attack whereby blockchain analysts cluster UTXO's using timing information (if users move multiple mixed coins in a short time period). 
+CoinJoin tools enable Bitcoin users to disassociate the past & future history of their bitcoin UTXOs (through a process called mixing). Users move their mixed coins to a secondary wallet for more secure storage (e.g. a Cold Wallet / Hardware wallet) and are potentially vulnerable to a timing attack whereby blockchain analysts cluster UTXO's using timing information (if users move multiple mixed coins in a short time period).
 
 # Overview
 
 txCast enables Bitcoin users to introduce a random and automated time delay between signed transaction broadcasts.
 
 # Use:
-Users copy signed transactions from their wallet of choice and paste them into the terminal individually. They are prompted to enter the time delay which they are able to tolerate in minutes, hours and days. 
+Users copy signed transactions from their wallet of choice and paste them into the terminal individually. They are prompted to enter the time delay which they are able to tolerate in minutes, hours and days.
 
 Signed transactions are broadcast using the blockstream.info API over tor with IP addresses changing between each broadcast.
 
@@ -44,8 +44,8 @@ Run the script with `python3 txCast.py`
 - tor integration may not be robust. Should connection be refreshed in a different way? (Used [this](https://techmonger.github.io/68/tor-new-ip-python/))
 - Not sure how well this deals with daylight saving time clock changes (time will jump) or how to best deal with this?
 - Configured for testnet (Must remove /testnet from blockstream url for mainnet, I recommend waiting till 01 March 2020 as explained above)
-- Not sure how long tor takes to renew IP, probably need a delay somewhere
-- Is randomint random enough?
+- Using time delay to ensure new IP is used, could instead compare IP values.
+- Could use .onion site rather than clearnet (Blockstream endpoint)
 
 
 # Future Work:
