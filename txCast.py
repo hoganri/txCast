@@ -89,7 +89,7 @@ def build_lists():
 
 
 def push_tx(payload):
-    requests.post('https://blockstream.info/testnet/api/tx', data=payload)
+    requests.post('http://explorerzydxu5ecjrkwceayqybizmpjjznk5izmitf2modhcusuqlid.onion/testnet/api/tx', data=payload) # or use 'https://blockstream.info/testnet/api/tx'
     print("############################# SENDING TRANSACTION #############################")
     print("Data Sent: " + str(payload))
     print("IP Address Used: " + str(get_current_ip()))
