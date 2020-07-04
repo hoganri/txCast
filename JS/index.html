@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2> Status: </h2>
+    <div id="status"> PENDING USER INPUT </div>
+
+    <!-- Transaction List -->
+    <h2 id="headingTx"> 1. Add Signed Transactions </h2>
+    <p id="descriptionTx"> Paste your signed transaction into the text box & press add </p>
+    <input type="text" id="inputTx" onclick="this.select();" value="Paste Signed TX">
+    <button id="add" onclick="addTransaction()"> Add </button>
+    <button id="clearTransactions" onclick="clearTransactions()"> Clear </button>
+    <p id="txList"></p>
+
+    <!-- Delay -->
+    <h2> 2. Enter Max Delay </h2>
+    <p> Days: </p>
+    <input type="number" id="setDelayDays" onclick="this.select();">
+    <p> Hours: </p>
+    <input type="number" id="setDelayHours" onclick="this.select();" min="5">
+    <p id=delay></p>
+
+    <!-- Run Script -->
+    <h2> 3. Run Script: </h2>
+    <button id="runScript" onclick="runScript()"> Run Script </button>
+
+    <!-- Output -->
+    <p> Current Time: </p>
+    <p id="time"></p>
+
+    <p> Time Till Next Tx: </p>
+    <p id="countdown"></p>
+
+    <h2> Remaining: </h2>
+    <div id="tableRemaining"> </div>
+
+    <h2> Processed: </h2>
+    <div id="tableProcessed"> </div>
+
+</body>
+
+<script src="./functions.js"></script>
+
+</html>
