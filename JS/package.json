@@ -1,0 +1,25 @@
+{
+  "name": "txCast",
+  "version": "0.0.1",
+  "description": "Randomised Bitcoin transaction broadcasting to break timing analysis (configured for testnet, further testing needed).",
+  "main": "main.js",
+  "scripts": {
+    "start": "bash ./start-all.sh",
+    "start-client": "electron .",
+    "start-server": "node server.js"
+  },
+  "repository": "https://github.com/6102bitcoin/txCast",
+  "keywords": [
+    "Bitcoin",
+    "Privacy"
+  ],
+  "author": "6102bitcoin",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^9.0.5",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.2",
+    "tor-request": "^3.1.0"
+  }
+}

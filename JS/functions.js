@@ -10,6 +10,8 @@ var tx = "";
 var delayDays;
 var delayHours;
 var remainingms = 0;
+// var request = require('request');
+// var tr = require('tor-request');
 
 function addTransaction() {  // Add a transaction
   var tx = document.getElementById("inputTx").value;  // Get user input tx
@@ -171,10 +173,17 @@ function loop(){
   }, 500);                  // Note: May want to randomise to reduce data leak
 }
 
-function pushTx(tx){// Broadcast Transaction
-  let response = fetch("https://blockstream.info/testnet/api/tx", {  // Blockstream Clearnet Push TX [WORKS]
-  //let response = fetch("http://explorerzydxu5ecjrkwceayqybizmpjjznk5izmitf2modhcusuqlid.onion/testnet/tx/push", {  // Blockstream TOR Push TX [DOES NOT WORK]
-    method: 'POST',
-    body: tx
+// function pushTx(tx){// Broadcast Transaction
+//   let response = fetch("https://blockstream.info/testnet/api/tx", {  // Blockstream Clearnet Push TX [WORKS]
+//   //let response = fetch("http://explorerzydxu5ecjrkwceayqybizmpjjznk5izmitf2modhcusuqlid.onion/testnet/tx/push", {  // Blockstream TOR Push TX [DOES NOT WORK]
+//     method: 'POST',
+//     body: tx
+//   });
+// }
+
+function pushTx(tx){// Broadcast Transaction via Tor
+  url = "http://localhost:3100/push?tx=" + tx
+  let response = fetch(url, {  // Blockstream Clearnet Push TX [WORKS]
+    method: 'GET',
   });
 }
