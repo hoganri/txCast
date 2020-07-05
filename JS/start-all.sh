@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "start server"
 npm run start-server &
-npm run start-client &
+echo "start client -"
+port=8000 npm run start-client &
 wait
