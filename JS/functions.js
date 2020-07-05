@@ -10,6 +10,8 @@ var tx = "";
 var delayDays;
 var delayHours;
 var remainingms = 0;
+var pushUrl = "";
+var pushDomain = "";
 // var request = require('request');
 // var tr = require('tor-request');
 
@@ -145,6 +147,7 @@ function checkNextTime(){ // Check if next broadcast time has elapsed
 
 function runScript(){// Run main script
   document.getElementById('status').innerHTML = "RUNNING";
+  getSelectedOnion();
   setDelay();
   shuffleList(txList);      // Randomise Order
   generateTimes();          // Generate Random times (& Order chronologically)
@@ -173,17 +176,16 @@ function loop(){
   }, 500);                  // Note: May want to randomise to reduce data leak
 }
 
-// function pushTx(tx){// Broadcast Transaction
-//   let response = fetch("https://blockstream.info/testnet/api/tx", {  // Blockstream Clearnet Push TX [WORKS]
-//   //let response = fetch("http://explorerzydxu5ecjrkwceayqybizmpjjznk5izmitf2modhcusuqlid.onion/testnet/tx/push", {  // Blockstream TOR Push TX [DOES NOT WORK]
-//     method: 'POST',
-//     body: tx
-//   });
-// }
-
 function pushTx(tx){// Broadcast Transaction via Tor
   url = "http://localhost:3100/push?tx=" + tx
-  let response = fetch(url, {  // Blockstream Clearnet Push TX [WORKS]
+  let response = fetch(url, {  // Somehow pass pushURL to the server as an input
     method: 'GET',
   });
+}
+
+function getSelectedOnion(){
+  var e = document.getElementById("onion");
+  pushUrl = e.options[e.selectedIndex].value;
+  pushDomain = e.options[e.selectedIndex].text;
+  //document.getElementById("onionSelected").innerHTML = pushDomain;
 }

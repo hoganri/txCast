@@ -48,7 +48,7 @@ Install tor. These are the instructions for linux:
 5. `sudo service tor stop`
 6. `sudo service tor start`
 7. Set password to the password you entered in Step 3 on line 12 of the code (`password = "test"`)
-8. [Download](https://github.com/6102bitcoin/txCast/blob/master/txCast.py) the python script
+8. [Download](https://github.com/6102bitcoin/txCast/blob/master/Python/txCast.py) the python script
 9. Install following python packages:
 - [requests](https://2.python-requests.org/en/master/) to use the blockstream API to push transactions
 - [Stem](https://stem.torproject.org/) to use tor

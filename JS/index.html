@@ -22,6 +22,18 @@
     <input type="number" id="setDelayHours" onclick="this.select();" min="5">
     <p id=delay></p>
 
+    <!-- Select Broadcast Site -->
+    <h2>3. Select Broadcast Method</h2>
+
+		<p id="onionSelected"></p>
+
+		<select id="onion">
+			<option value="None" selected>-- Select --</option>
+			<option value="http://explorerzydxu5ecjrkwceayqybizmpjjznk5izmitf2modhcusuqlid.onion/testnet/api/tx">Blockstream</option>
+			<option value="http://mempoolhqx4isw62xs7abwphsq7ldayuidyx2v2oethdhhj6mlo2r6ad.onion/testnet/api/tx">Mempool</option>
+		</select>
+
+
     <!-- Run Script -->
     <h2> 3. Run Script: </h2>
     <button id="runScript" onclick="runScript()"> Run Script </button>
