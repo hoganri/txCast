@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "bash ./start-all.sh",
-    "start-client": "electron .",
-    "start-server": "node server.js"
+    "start-server": "node server.js",
+    "start-client": "electron ."
   },
   "repository": "https://github.com/6102bitcoin/txCast",
   "keywords": [
