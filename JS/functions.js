@@ -135,7 +135,8 @@ function countdown() { // Count Down to next broadcast time
 
 function checkNextTime(){ // Check if next broadcast time has elapsed
   if (remainingms < 0){
-    pushTx(txList_remaining[0]);                      // Broadcast Transaction
+    let theService = document.getElementById("onion").value; 
+    pushTx(theService, txList_remaining[0]);                      // Broadcast Transaction
     timeList_processed.push(timeList_remaining[0]);   // Add first element of remaining time list
     txList_processed.push(txList_remaining[0]);       // Add first element of remaining tx list
     timeList_remaining.shift();  // Remove first element of remaining time list
@@ -176,9 +177,9 @@ function loop(){
   }, 500);                  // Note: May want to randomise to reduce data leak
 }
 
-function pushTx(tx){// Broadcast Transaction via Tor
-  url = "http://localhost:3100/push?tx=" + tx
-  let response = fetch(url, {  // Somehow pass pushURL to the server as an input
+function pushTx(service, tx){// Broadcast Transaction via Tor
+  url = "http://localhost:3100/push?service="+service+"&tx=" + tx;
+  let response = fetch(url, {  
     method: 'GET',
   });
 }
